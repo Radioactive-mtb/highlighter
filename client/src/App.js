@@ -1,15 +1,10 @@
 import React from "react";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  createHttpLink,
-} from "@apollo/client";
+import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { loggedIn, logout } from "./utils/auth";
 
-import Home from "./pages/Home";
+import Homepage from "./pages/Homepage";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 
@@ -64,7 +59,7 @@ function App() {
             )}
           </ul>
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route path="/" element={<Homepage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
           </Routes>
