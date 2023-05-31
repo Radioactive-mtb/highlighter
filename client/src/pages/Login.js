@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import { login } from "../utils/auth";
@@ -44,9 +44,7 @@ const Login = (props) => {
       <h4>Login</h4>
       <div>
         {data ? (
-          <p>
-            Success! You may now head <Link to="/">back to the homepage.</Link>
-          </p>
+          <p>Success! You have logged in!</p>
         ) : (
           <form onSubmit={handleFormSubmit}>
             <label for="email">Email</label>
