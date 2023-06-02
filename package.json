@@ -18,8 +18,5 @@
   },
   "engines": {
     "node": "16.19.1"
-  },
-  "dependencies": {
-    "react-calendar": "^4.2.1"
   }
 }
