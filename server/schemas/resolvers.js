@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User } = require("../models");
+const { User, Event } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -8,7 +8,7 @@ const resolvers = {
       return User.find();
     },
     user: async (parent, { username }) => {
-      return User.findOne({ username });
+      return User.findOne({ username }).populate("events");
     },
     me: async (parent, args, context) => {
       if (context.user) {
@@ -41,6 +41,36 @@ const resolvers = {
 
       return { token, user };
     },
+    // addEvent: async (parent, { title, start, end }, context) => {
+    //   if (context.user) {
+    //     const event = await Event.create({
+    //       title,
+    //       start,
+    //       end,
+    //       eventAuthor: context.user.email,
+    //     });
+
+    //     await User.findOneAndUpdate(
+    //       { _id: context.user._id },
+    //       { $addToSet: { events: event._id } }
+    //     );
+    //     return event;
+    //   }
+    // },
+    // removeEvent: async (parent, { eventId }, context) => {
+    //   if (context.user) {
+    //     const event = await Event.findOneAndDelete({
+    //       _id: eventId,
+    //       eventAuthor: context.user.email,
+    //     });
+
+    //     await User.findOneAndUpdate(
+    //       { _id: context.user._id },
+    //       { $pull: { events: event._id } }
+    //     );
+    //     return event;
+    //   }
+    // },
   },
 };
 
