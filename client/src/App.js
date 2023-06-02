@@ -8,6 +8,7 @@ import Homepage from "./pages/Homepage";
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
+import DateDisplay from "./pages/Date";
 
 // Construct our main GraphQL API endpoint
 const httpLink = createHttpLink({
@@ -50,6 +51,10 @@ function App() {
                 <li>
                   <Link to="/signup">Signup</Link>
                 </li>
+                <li>
+                  <Link to="/profile">Profile</Link>
+                </li>
+                <DateDisplay></DateDisplay>
               </>
             ) : (
               <li>

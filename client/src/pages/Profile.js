@@ -5,9 +5,11 @@ const Profile = () => {
   const [value, onChange] = useState(new Date());
 
   return (
-    <div className="calendar-block">
-      <Calendar onChange={onChange} value={value} />
-    </div>
+    <>
+      <div className="calendar-block">
+        <Calendar onChange={onChange} value={value} />
+      </div>
+  </>
   );
 };
 
