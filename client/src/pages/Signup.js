@@ -8,7 +8,6 @@ import { login } from "../utils/auth";
 
 const Signup = () => {
   const [formState, setFormState] = useState({
-    username: "",
     email: "",
     password: "",
   });
@@ -48,16 +47,6 @@ const Signup = () => {
           </p>
         ) : (
           <form onSubmit={handleFormSubmit}>
-            <label for="username">Username</label>
-            <br />
-            <input
-              placeholder="Your username"
-              name="username"
-              type="text"
-              value={formState.name}
-              onChange={handleChange}
-            />
-            <br />
             <label for="email">Email</label>
             <br />
             <input
