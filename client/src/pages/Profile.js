@@ -19,7 +19,9 @@ const Profile = (props) => {
     console.log(newEvent);
     try {
       const { data } = eventMutation({
-        variables: { ...newEvent },
+        variables: {
+          ...newEvent,
+        },
       });
     } catch (e) {
       console.error(e);
