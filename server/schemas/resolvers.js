@@ -1,5 +1,5 @@
 const { AuthenticationError } = require("apollo-server-express");
-const { User } = require("../models");
+const { User, Event } = require("../models");
 const { signToken } = require("../utils/auth");
 
 const resolvers = {
@@ -7,8 +7,8 @@ const resolvers = {
     users: async () => {
       return User.find();
     },
-    user: async (parent, { username }) => {
-      return User.findOne({ username });
+    user: async (parent, { email }) => {
+      return User.findOne({ email }); //.populate("events");
     },
     me: async (parent, args, context) => {
       if (context.user) {
@@ -19,8 +19,8 @@ const resolvers = {
   },
 
   Mutation: {
-    addUser: async (parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
+    addUser: async (parent, { email, password }) => {
+      const user = await User.create({ email, password });
       const token = signToken(user);
       return { token, user };
     },
@@ -40,6 +40,36 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
+    },
+    addEvent: async (parent, { title, start, end }, context) => {
+      if (context.user) {
+        const event = await Event.create({
+          title,
+          start,
+          end,
+          eventAuthor: context.user.email,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { events: event._id } }
+        );
+        return event;
+      }
+    },
+    removeEvent: async (parent, { eventId }, context) => {
+      if (context.user) {
+        const event = await Event.findOneAndDelete({
+          _id: eventId,
+          eventAuthor: context.user.email,
+        });
+
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $pull: { events: event._id } }
+        );
+        return event;
+      }
     },
   },
 };
