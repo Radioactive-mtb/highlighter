@@ -5,16 +5,23 @@ const { signToken } = require("../utils/auth");
 const resolvers = {
   Query: {
     users: async () => {
-      return User.find();
+      return User.find().populate("events");
     },
     user: async (parent, { email }) => {
-      return User.findOne({ email }); //.populate("events");
+      return User.findOne({ email }).populate("events");
     },
     me: async (parent, args, context) => {
       if (context.user) {
-        return User.findOne({ _id: context.user._id });
+        return User.findOne({ _id: context.user._id }).populate("events");
       }
       throw new AuthenticationError("You need to be logged in!");
+    },
+    events: async (parent, { email }) => {
+      const params = email ? { email } : {};
+      return Event.find(params);
+    },
+    event: async (parent, { eventId }) => {
+      return Event.findOne({ eventId });
     },
   },
 

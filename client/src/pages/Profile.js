@@ -1,5 +1,7 @@
 import "./Profile.css";
 import React, { useState } from "react";
+import { Navigate, useParams } from "react-router-dom";
+import { useQuery } from "@apollo/client";
 import { Calendar, momentLocalizer } from "react-big-calendar";
 import moment from "moment";
 import "react-big-calendar/lib/css/react-big-calendar.css";
@@ -7,6 +9,8 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useMutation } from "@apollo/client";
 import { ADD_EVENT } from "../utils/mutations";
+import { QUERY_USER, QUERY_ME } from "../utils/queries";
+import { loggedIn, getProfile } from "../utils/auth";
 const localizer = momentLocalizer(moment);
 
 const Profile = (props) => {
@@ -33,7 +37,32 @@ const Profile = (props) => {
       start: "",
       end: "",
     });
+    window.location.reload();
   };
+
+  const { email: userParam } = useParams();
+
+  const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
+    variables: { email: userParam },
+  });
+
+  const user = data?.me || data?.user || {};
+  if (loggedIn() && getProfile().data.email === userParam) {
+    return <Navigate to="/profile" />;
+  }
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (!user?.email) {
+    return (
+      <h4>
+        You need to be logged in to see this. Use the navigation links above to
+        sign up or log in!
+      </h4>
+    );
+  }
 
   return (
     <div className="Profile">
@@ -71,7 +100,7 @@ const Profile = (props) => {
 
       <Calendar
         localizer={localizer}
-        events={allEvents}
+        events={user.events}
         startAccessor="start"
         endAccessor="end"
         style={{ height: 500, margin: "50px" }}
