@@ -100,7 +100,9 @@ const Profile = (props) => {
 
       <Calendar
         localizer={localizer}
-        events={user.events}
+        events={user.events.map((evt) => {
+          return { ...evt, start: new Date(evt.start), end: new Date(evt.end) };
+        })}
         startAccessor="start"
         endAccessor="end"
         style={{ height: 500, margin: "50px" }}
