@@ -71,7 +71,6 @@ const Profile = (props) => {
 
   return (
     <div className="Profile">
-      <DateDisplay />
       <h2 className="my-calendar">My Calendar</h2>
       <aside className="date-picker">
         <div className="event-title">Add Your Event</div>
