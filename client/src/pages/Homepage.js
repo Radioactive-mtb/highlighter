@@ -1,7 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import Login from './Login';
-import Signup from './Signup';
+import React from "react";
+import Login from "./Login";
+import Signup from "./Signup";
 
 const Homepage = () => {
   return (
@@ -16,5 +15,3 @@ const Homepage = () => {
 };
 
 export default Homepage;
-
-
