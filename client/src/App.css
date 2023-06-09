@@ -1,0 +1,27 @@
+.nav-bar {
+    background: #fbeee0;
+    background: linear-gradient(to right, #683f03, #fbeee0);
+    margin-bottom: 0%;
+}
+
+.link {
+    text-decoration: none;
+    color: black;
+    font-size: 20px;
+    font-weight: 200;
+}
+
+.link:hover {
+    color: white;
+}
+
+.link:focus {
+    color: white;
+}
+
+.col {
+    padding: 20px;
+    list-style-type: none;
+    text-align: center;
+
+}

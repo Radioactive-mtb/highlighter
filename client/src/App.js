@@ -1,4 +1,5 @@
 import React from "react";
+import "./App.css";
 import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
@@ -39,31 +40,32 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
+          <ul className="nav-bar row">
+            <li className="col">
+                <Link className="link" to="/">Home</Link>
             </li>
             {!loggedIn() ? (
               <>
-                <li>
-                  <Link to="/login">Login</Link>
+                <li className="col">
+                  <Link className="link" to="/login">Login</Link>
                 </li>
-                <li>
-                  <Link to="/signup">Signup</Link>
+                <li className="col">
+                  <Link className="link" to="/signup">Signup</Link>
                 </li>
-                <li>
-                  <Link to="/profile">Profile</Link>
+                <li className="col"> 
+                  <Link className="link" to="/profile">Profile</Link>
                 </li>
-                <DateDisplay></DateDisplay>
               </>
             ) : (
-              <li>
-                <a href="/#" onClick={logout}>
+              <li className="col">
+                <a href="/#" className="link" onClick={logout}>
                   Log Out
                 </a>
               </li>
             )}
           </ul>
+          <DateDisplay></DateDisplay>
+
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/login" element={<Login />} />
