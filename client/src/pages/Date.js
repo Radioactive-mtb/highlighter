@@ -5,7 +5,7 @@ import "./Date.css";
 
 const DateDisplay = () => {
     const [date, setDate] = useState(new Date());
-    const day = dayjs(date).format("MM");
+    const day = dayjs(date).format("DD");
     const formattedDate = dayjs(date).format("MMMM YYYY");
   
     useEffect(() => {
@@ -16,7 +16,7 @@ const DateDisplay = () => {
     })
 
     return (
-      <div className="row date-display p-3 text-center">
+      <div className="row date-display text-center">
         <div className='col'>{day} | {formattedDate}</div>
       </div>
     );

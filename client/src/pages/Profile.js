@@ -1,5 +1,5 @@
 import "./Profile.css";
-import DateDisplay from "./Date";
+//import DateDisplay from "./Date";
 import React, { useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
@@ -68,7 +68,6 @@ const Profile = (props) => {
 
   return (
     <div className="Profile">
-      < DateDisplay />
       <h2 className="my-calendar">My Calendar</h2>
       <aside className="date-picker">
         <div className="event-title">Add Your Event</div>
