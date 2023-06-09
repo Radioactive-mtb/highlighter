@@ -14,7 +14,6 @@ import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import { loggedIn, getProfile } from "../utils/auth";
 const localizer = momentLocalizer(moment);
 
-
 const Profile = (props) => {
   const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
   const [allEvents, setAllEvents] = useState("events");
@@ -40,6 +39,10 @@ const Profile = (props) => {
       end: "",
     });
     window.location.reload();
+  };
+
+  const selectEvent = async (event) => {
+    console.log(event, "Event data");
   };
 
   const { email: userParam } = useParams();
@@ -68,7 +71,7 @@ const Profile = (props) => {
 
   return (
     <div className="Profile">
-      < DateDisplay />
+      <DateDisplay />
       <h2 className="my-calendar">My Calendar</h2>
       <aside className="date-picker">
         <div className="event-title">Add Your Event</div>
@@ -81,17 +84,21 @@ const Profile = (props) => {
         ></input>
         <DatePicker
           placeholderText="Start Date"
-          style={{ width: "60%", margin: "20px"}}
+          style={{ width: "60%", margin: "20px" }}
           selected={newEvent.start}
           onChange={(start) => setNewEvent({ ...newEvent, start })}
         />
         <DatePicker
           placeholderText="End Date"
-          style={{width: "60%"}}
+          style={{ width: "60%" }}
           selected={newEvent.end}
           onChange={(end) => setNewEvent({ ...newEvent, end })}
         />
-        <button style={{ width: "60%", margin: "20px"}} onClick={addEventCalendar} className="button-74">
+        <button
+          style={{ width: "60%", margin: "20px" }}
+          onClick={addEventCalendar}
+          className="button-74"
+        >
           Add Event
         </button>
         {error && (
@@ -102,14 +109,15 @@ const Profile = (props) => {
       </aside>
 
       <Calendar
-        className=' react-calendar'
+        className=" react-calendar"
         localizer={localizer}
         events={user.events.map((evt) => {
           return { ...evt, start: new Date(evt.start), end: new Date(evt.end) };
         })}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: 500}}
+        onSelectEvent={selectEvent}
+        style={{ height: 500 }}
       />
     </div>
   );
