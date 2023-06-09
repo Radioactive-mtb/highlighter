@@ -1,4 +1,5 @@
 import "./Profile.css";
+import DateDisplay from "./Date";
 import React, { useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
@@ -12,6 +13,7 @@ import { ADD_EVENT } from "../utils/mutations";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import { loggedIn, getProfile } from "../utils/auth";
 const localizer = momentLocalizer(moment);
+
 
 const Profile = (props) => {
   const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
@@ -66,29 +68,30 @@ const Profile = (props) => {
 
   return (
     <div className="Profile">
-      <h2 className="text-center">Add New Event</h2>
-      <div className="text-center">
+      < DateDisplay />
+      <h2 className="my-calendar">My Calendar</h2>
+      <aside className="date-picker">
+        <div className="event-title">Add Your Event</div>
         <input
           type="text"
           placeholer="Add Title"
-          style={{ width: "20%", margin: "10px" }}
+          style={{ width: "60%", margin: "20px" }}
           value={newEvent.title}
           onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}
         ></input>
         <DatePicker
-          className="text-center"
           placeholderText="Start Date"
-          style={{ margin: "10px" }}
+          style={{ width: "60%", margin: "20px"}}
           selected={newEvent.start}
           onChange={(start) => setNewEvent({ ...newEvent, start })}
         />
         <DatePicker
-          className="text-center"
           placeholderText="End Date"
+          style={{width: "60%"}}
           selected={newEvent.end}
           onChange={(end) => setNewEvent({ ...newEvent, end })}
         />
-        <button style={{ margin: "10px" }} onClick={addEventCalendar}>
+        <button style={{ width: "60%", margin: "20px"}} onClick={addEventCalendar} className="button-74">
           Add Event
         </button>
         {error && (
@@ -96,16 +99,17 @@ const Profile = (props) => {
             Something went wrong...
           </div>
         )}
-      </div>
+      </aside>
 
       <Calendar
+        className=' react-calendar'
         localizer={localizer}
         events={user.events.map((evt) => {
           return { ...evt, start: new Date(evt.start), end: new Date(evt.end) };
         })}
         startAccessor="start"
         endAccessor="end"
-        style={{ height: 500, margin: "50px" }}
+        style={{ height: 500}}
       />
     </div>
   );
