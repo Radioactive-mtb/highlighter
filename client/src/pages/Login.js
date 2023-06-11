@@ -42,6 +42,7 @@ const Login = (props) => {
   return (
     <main>
       <h4>Login</h4>
+      <br />
       <div>
         {data ? (
           <p>Success! You have logged in!</p>
@@ -66,6 +67,7 @@ const Login = (props) => {
               value={formState.password}
               onChange={handleChange}
             />
+            <br />
             <br />
             <button style={{ cursor: "pointer" }} type="submit">
               Submit

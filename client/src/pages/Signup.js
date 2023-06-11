@@ -40,6 +40,7 @@ const Signup = () => {
   return (
     <main>
       <h4>Sign Up</h4>
+      <br />
       <div>
         {data ? (
           <p>
@@ -66,6 +67,7 @@ const Signup = () => {
               value={formState.password}
               onChange={handleChange}
             />
+            <br />
             <br />
             <button style={{ cursor: "pointer" }} type="submit">
               Submit
