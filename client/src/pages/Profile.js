@@ -44,6 +44,9 @@ const Profile = (props) => {
 
   const selectEvent = async (event) => {
     console.log(event, "Event data");
+  };
+
+  const deleteEvent = (event) => {
     const { data } = removeEvent({
       variables: { eventId: event._id },
     });
@@ -111,7 +114,6 @@ const Profile = (props) => {
           </div>
         )}
       </aside>
-
       <Calendar
         className=" react-calendar"
         localizer={localizer}
@@ -121,6 +123,7 @@ const Profile = (props) => {
         startAccessor="start"
         endAccessor="end"
         onSelectEvent={selectEvent}
+        onDoubleClickEvent={deleteEvent}
         style={{ height: 500 }}
       />
     </div>
