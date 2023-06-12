@@ -9,7 +9,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useMutation } from "@apollo/client";
-import { ADD_EVENT } from "../utils/mutations";
+import { ADD_EVENT, REMOVE_EVENT } from "../utils/mutations";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import { loggedIn, getProfile } from "../utils/auth";
 const localizer = momentLocalizer(moment);
@@ -18,6 +18,7 @@ const Profile = (props) => {
   const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
   const [allEvents, setAllEvents] = useState("events");
   const [eventMutation, { error }] = useMutation(ADD_EVENT);
+  const [removeEvent] = useMutation(REMOVE_EVENT);
 
   const addEventCalendar = async (event) => {
     event.preventDefault();
@@ -43,6 +44,10 @@ const Profile = (props) => {
 
   const selectEvent = async (event) => {
     console.log(event, "Event data");
+    const { data } = removeEvent({
+      variables: { eventId: event._id },
+    });
+    window.location.reload();
   };
 
   const { email: userParam } = useParams();
