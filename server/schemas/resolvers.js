@@ -63,19 +63,8 @@ const resolvers = {
         return event;
       }
     },
-    removeEvent: async (parent, { eventId }, context) => {
-      if (context.user) {
-        const event = await Event.findOneAndDelete({
-          _id: eventId,
-          eventAuthor: context.user.email,
-        });
-
-        await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { events: event._id } }
-        );
-        return event;
-      }
+    removeEvent: async (parent, { eventId }) => {
+      return Event.findOneAndDelete({ _id: eventId });
     },
   },
 };
