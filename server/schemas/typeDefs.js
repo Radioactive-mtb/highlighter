@@ -34,6 +34,7 @@ const typeDefs = gql`
     login(email: String!, password: String!): Auth
     addEvent(title: String!, start: String!, end: String!): Event
     removeEvent(eventId: ID!): Event
+    modifyEvent(title: String!, start: String!, end: String!): Event
   }
 `;
 

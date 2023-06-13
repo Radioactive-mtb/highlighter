@@ -9,7 +9,7 @@ import "react-big-calendar/lib/css/react-big-calendar.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useMutation } from "@apollo/client";
-import { ADD_EVENT, REMOVE_EVENT } from "../utils/mutations";
+import { ADD_EVENT, REMOVE_EVENT, MODIFY_EVENT } from "../utils/mutations";
 import { QUERY_USER, QUERY_ME } from "../utils/queries";
 import { loggedIn, getProfile } from "../utils/auth";
 const localizer = momentLocalizer(moment);
@@ -19,6 +19,7 @@ const Profile = (props) => {
   const [allEvents, setAllEvents] = useState("events");
   const [eventMutation, { error }] = useMutation(ADD_EVENT);
   const [removeEvent] = useMutation(REMOVE_EVENT);
+  const [modifyEvent] = useMutation(MODIFY_EVENT);
 
   const addEventCalendar = async (event) => {
     event.preventDefault();
@@ -51,6 +52,13 @@ const Profile = (props) => {
       variables: { eventId: event._id },
     });
     window.location.reload();
+  };
+
+  const updateEvent = async (event) => {
+    window.clearTimeout(event);
+    event = window.setTimeout(() => {
+      window.alert('Future update event');
+    }, 250);
   };
 
   const { email: userParam } = useParams();
@@ -122,7 +130,7 @@ const Profile = (props) => {
         })}
         startAccessor="start"
         endAccessor="end"
-        onSelectEvent={selectEvent}
+        onSelectEvent={updateEvent}
         onDoubleClickEvent={deleteEvent}
         style={{ height: 500 }}
       />
