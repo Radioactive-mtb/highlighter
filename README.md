@@ -9,7 +9,7 @@ We utilized GraphQL, Node.js, Express, React, MongoDB and Mongoose.
 - User can use the app to create events on a calendar.
 - User is first presented with a homepage with a login and signup form. 
 
-<!-- <img src="public/homepage.png" alt="homepage" width="500" height="300"> --> ADD UPDATED HOMEPAGE IMAGE
+<img src=" client/public/homepage.png" alt="homepage" width="500" height="300"> 
 
 - User can signup for a new account or login to an existing account when they click on the login/signup button.
 - Once logged in, the user is taken to a page where a blank calendar shows up and a sign out button. 
@@ -34,4 +34,4 @@ Copyright (c) 2023
 ## Link to Github repo:
 https://github.com/Radioactive-mtb/highlighter
 ## Link to deployed project
-ADD LINK
+https://peaceful-island-43281.herokuapp.com/

@@ -40,3 +40,14 @@ export const REMOVE_EVENT = gql`
     }
   }
 `;
+
+export const MODIFY_EVENT = gql`
+  mutation modifyEvent($title: String!, $start: String!, $end: String!) {
+    modifyEvent(title: $title, start: $start, end: $end) {
+      _id
+      title
+      start
+      end
+    }
+  }
+`;
