@@ -30,6 +30,7 @@ export const login = (idToken) => {
   localStorage.setItem("id_token", idToken);
   window.location.assign("/profile");
 };
+//changed /Profile to /profile
 
 export const logout = () => {
   localStorage.removeItem("id_token");
