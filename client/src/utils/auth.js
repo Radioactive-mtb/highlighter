@@ -28,7 +28,7 @@ export const loggedIn = () => {
 
 export const login = (idToken) => {
   localStorage.setItem("id_token", idToken);
-  window.location.assign("/Profile");
+  window.location.assign("/profile");
 };
 
 export const logout = () => {
