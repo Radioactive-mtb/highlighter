@@ -1,39 +1,39 @@
 .Profile {
-    text-align: center;
-    background-color: #fbf8f4;
+  text-align: center;
+  background-color: #fbf8f4;
 }
 
 .date-start {
-    position: center;
+  position: center;
 }
 
 .react-calendar {
-    border: 2px solid #422800;
-    font-family: Arial, Helvetica, sans-serif;
-    line-height: 1.125em;
-    margin-left: 60px;
-    margin-right: 40px;
-    margin-bottom: 30px;
+  border: 2px solid #422800;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.125em;
+  margin-left: 60px;
+  margin-right: 40px;
+  margin-bottom: 30px;
 }
 
 aside {
-    margin-top: 60px;
-    margin-left: 20px;
-    margin-right: 20px;
-    width: 20%;
-    padding: 40px;
-    float: left;
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: #fbeee0;
-    border-radius: 50%;
-    font-weight: lighter;
-    box-shadow: #422800 4px 4px 0 0;
-  }
+  margin-top: 60px;
+  margin-left: 20px;
+  margin-right: 20px;
+  width: 20%;
+  padding: 40px;
+  float: left;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: #fbeee0;
+  border-radius: 50%;
+  font-weight: lighter;
+  box-shadow: #422800 4px 4px 0 0;
+}
 
 .event-title {
-    font-size: 30px;
-    font-family:Helvetica Neue, Helvetica, Arial, sans-serif;
-    font-weight:200;
+  font-size: 30px;
+  font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+  font-weight: 200;
 }
 
 .button-74 {
@@ -71,7 +71,7 @@ aside {
   }
 }
 
-.my-calendar{
-    font-weight: lighter;
-    margin: 20px;
+.my-calendar {
+  font-weight: lighter;
+  margin: 20px;
 }
