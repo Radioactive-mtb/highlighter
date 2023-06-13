@@ -66,6 +66,21 @@ const resolvers = {
     removeEvent: async (parent, { eventId }) => {
       return Event.findOneAndDelete({ _id: eventId });
     },
+    modifyEvent: async (parent, { title, start, end }, context) => {
+      if (context.user) {
+        const event = await Event.findOneAndUpdate({
+          title,
+          start,
+          end,
+          eventAuthor: context.user.email,
+        });
+        await User.findOneAndUpdate(
+          { _id: context.user._id },
+          { $addToSet: { events: event._id } }
+        );
+        return event;
+      }
+    },
   },
 };
 
