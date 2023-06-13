@@ -1,6 +1,6 @@
 import "./Profile.css";
 //import DateDisplay from "./Date";
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Navigate, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/client";
 import { Calendar, momentLocalizer } from "react-big-calendar";
@@ -24,6 +24,7 @@ const Profile = (props) => {
     event.preventDefault();
     console.log(newEvent);
     try {
+      // eslint-disable-next-line no-unused-vars
       const { data } = eventMutation({
         variables: {
           ...newEvent,
@@ -44,9 +45,14 @@ const Profile = (props) => {
 
   const selectEvent = async (event) => {
     console.log(event, "Event data");
+    window.clearTimeout(event);
+    event = window.setTimeout(() => {
+      window.alert("Future update event");
+    }, 250);
   };
 
   const deleteEvent = (event) => {
+    // eslint-disable-next-line no-unused-vars
     const { data } = removeEvent({
       variables: { eventId: event._id },
     });
@@ -118,7 +124,11 @@ const Profile = (props) => {
         className=" react-calendar"
         localizer={localizer}
         events={user.events.map((evt) => {
-          return { ...evt, start: new Date(evt.start), end: new Date(evt.end) };
+          return {
+            ...evt,
+            start: new Date(evt.start),
+            end: new Date(evt.end),
+          };
         })}
         startAccessor="start"
         endAccessor="end"
