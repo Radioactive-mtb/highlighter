@@ -1,6 +1,11 @@
 import React from "react";
 import "./App.css";
-import { ApolloClient, InMemoryCache, ApolloProvider, createHttpLink } from "@apollo/client";
+import {
+  ApolloClient,
+  InMemoryCache,
+  ApolloProvider,
+  createHttpLink,
+} from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { loggedIn, logout } from "./utils/auth";
@@ -42,18 +47,26 @@ function App() {
         <div>
           <ul className="nav-bar row">
             <li className="col">
-                <Link className="link" to="/">Home</Link>
+              <Link className="link" to="/">
+                Home
+              </Link>
             </li>
             {!loggedIn() ? (
               <>
                 <li className="col">
-                  <Link className="link" to="/login">Login</Link>
+                  <Link className="link" to="/login">
+                    Login
+                  </Link>
                 </li>
                 <li className="col">
-                  <Link className="link" to="/signup">Signup</Link>
+                  <Link className="link" to="/signup">
+                    Signup
+                  </Link>
                 </li>
-                <li className="col"> 
-                  <Link className="link" to="/profile">Profile</Link>
+                <li className="col">
+                  <Link className="link" to="/profile">
+                    Profile
+                  </Link>
                 </li>
               </>
             ) : (
@@ -70,7 +83,7 @@ function App() {
             <Route path="/" element={<Homepage />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/Profile" element={<Profile />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </div>
       </Router>
